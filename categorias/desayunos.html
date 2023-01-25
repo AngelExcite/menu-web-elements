@@ -4,13 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#d83b3b" />
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap"
+      rel="stylesheet"
+    />
     <title>Desayunos</title>
     <script src="../js/menu.js"></script>
+    <script src="../js/card.js"></script>
   </head>
   <body>
-    <div class="card">
-        
-    </div>
     <app-drawer> </app-drawer>
+    <menu-card>
+      <h3 slot="name">Pan tostado</h3>
+      <span slot="description">
+        El pan tostado es un alimento que se prepara a partir de un pan
+      </span>
+    </menu-card>
+    <menu-card>
+      <h3 slot="name">Pastel</h3>
+    </menu-card>
   </body>
 </html>
