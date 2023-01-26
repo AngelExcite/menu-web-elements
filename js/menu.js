@@ -38,6 +38,9 @@ customElements.define(
             cursor: pointer;
             transition: .5s;
             box-shadow: 5px 3px 10px rgba(0, 0, 0, .1)
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .menu,
@@ -61,6 +64,7 @@ customElements.define(
             max-width: 70vw;
             height: 100vh;
             background: #d83b3b
+            
           }
 
           .menu .title {
@@ -122,7 +126,7 @@ customElements.define(
             display: none;
           }
 
-          @media (min-width: 965px) {
+          @media (min-width: 705px) and (orientation: landscape) {
             .rotate-device {
               display: flex;
               position: fixed;
@@ -144,12 +148,64 @@ customElements.define(
               z-index: 10;
             }
           }
+
+          .appbar {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 52px;
+            background: #fff;
+            color: #d83b3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 20px;
+            text-transform: uppercase;
+            z-index: 10;
+          }
+
+          .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+          }
+
+          .line1,
+          .line2 {
+            width: 38px;
+            height: 4px;
+            background-color: #f5e9da;
+            margin: 5px 0;
+            transition: 0.4s;
+          }
+
+          button.float-button.open {
+            background: #fff;
+          }
+
+          button.float-button.open .line1 {
+            background-color: #d83b3b;
+            transform: rotate(-42deg) translate(-5px, 5px);
+          }
+
+          button.float-button.open .line2 {
+            background-color: #d83b3b;
+            transform: rotate(42deg) translate(-4px, -6px);
+          }
+
         </style>
         <div class="rotate-device">
             Por favor rota tu teléfono para mejor experiencia
         </div>
         <div class="menu" id="menu">
-          <div class="title">Selecciona una categoría</div>
+        <div class="title">Selecciona una categoría</div>
           <ul>
             <li>
               <a href="/categorias/desayunos.html">Desayunos
@@ -157,12 +213,12 @@ customElements.define(
               </a>
             </li>
             <li>
-              <a href="http://">Entradas
+              <a href="/categorias/entradas.html">Entradas
                 <span class="arrow-right"></span>
               </a>
             </li>
             <li>
-              <a href="http://">Postres <span class="arrow-right"></span> </a>
+              <a href="/categorias/postres.html">Postres <span class="arrow-right"></span> </a>
             </li>
             <li>
               <a href="/" style="padding: 0">
@@ -170,14 +226,23 @@ customElements.define(
               </a>
               <div class="space"></div>
             </li>
-          </ul>
-        </div>
-        <button class="float-button" id="menu-button">Menu</button>
+            </ul>
+          </div>
+          <div class="appbar">
+             <slot name="title">Title</slot>
+          </div>
+        <button class="float-button" id="menu-button">
+          <div class="container">
+            <div class="line1"></div>
+            <div class="line2"></div>
+          </div>
+        </button>
       `;
       shadowRoot
         .getElementById("menu-button")
         .addEventListener("click", function () {
           shadowRoot.getElementById("menu").classList.toggle("open");
+          shadowRoot.getElementById("menu-button").classList.toggle("open");
         });
     }
   }
